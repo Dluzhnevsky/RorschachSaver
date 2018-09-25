@@ -5,14 +5,11 @@ class RorschachSaverView: ScreenSaverView {
     let rorschachTimer: RorschachTimer
     
     var inkGenerator: InkGenerator
-    var inkSpots: [InkSpot]
     
     override init?(frame: NSRect, isPreview: Bool) {
         rorschachTimer = RorschachTimer()
         
         inkGenerator = InkGenerator(rect: frame)
-        inkSpots = [InkSpot]()
-        inkSpots.append(inkGenerator.makeNextInkSpot())
       
         super.init(frame: frame, isPreview: isPreview)
         rorschachTimer.delegate = self
@@ -20,25 +17,17 @@ class RorschachSaverView: ScreenSaverView {
     }
     
     func updateView() {
-        
-        inkSpots.append(inkGenerator.makeNextInkSpot())
         needsDisplay = true
+        inkGenerator.update()
     }
 
     override func draw(_ rect: NSRect) {
         NSColor.white.set()
         rect.fill()
+       
+        inkGenerator.draw(rect)
         
-        for (index, inkSpot) in inkSpots.enumerated().reversed() {
-            inkSpot.update(rect)
-            
-            if inkSpot.isGone {
-                inkSpots.remove(at: index)
-            }
-        }
-        
-        NSColor.yellow.set()
-        ("\(inkSpots.count)" as NSString).draw(in: NSRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.height), withAttributes: nil)
+        ("\(inkGenerator.state)" as NSString).draw(in: NSRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.height), withAttributes: nil)
     }
     
     required init?(coder decoder: NSCoder) {

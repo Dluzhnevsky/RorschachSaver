@@ -5,8 +5,8 @@ class InkSpot {
     let peakBrightness: CGFloat = Randomizer.randomCGFloat / 2.0 + 0.5
     
     var brightness: CGFloat = 0.0
-    var peakTicks = 70
     var wasCreated = false
+    var shouldBeGone = false
     var isGone = false
     
     var frame: NSRect
@@ -17,15 +17,10 @@ class InkSpot {
     
     func update(_ rect: NSRect) {
         if !wasCreated {
-            brightness += 0.01
+            brightness += 0.03
         }
-        else {
-            if peakTicks > 0 {
-                peakTicks -= 1
-            }
-            else {
-                brightness -= 0.01
-            }
+        else if shouldBeGone {
+                brightness -= 0.02
         }
         
         if brightness >= peakBrightness {
