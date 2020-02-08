@@ -2,25 +2,34 @@ import Cocoa
 
 class InkSpot {
     
-    let peakBrightness: CGFloat = Randomizer.randomCGFloat / 2.0 + 0.5
+    // MARK: - Internal Properties
     
-    var brightness: CGFloat = 0.0
     var wasCreated = false
     var shouldBeGone = false
     var isGone = false
     
-    var frame: NSRect
+    // MARK: - Private Properties
     
-    init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
+    private var frame: NSRect
+    private let peakBrightness: CGFloat
+    private var brightness: CGFloat
+    
+    // MARK: - Init
+    
+    init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, peakBrightness: CGFloat) {
         self.frame = NSRect(x: x, y: y, width: width, height: height)
+        self.peakBrightness = peakBrightness
+        self.brightness = 0
     }
+    
+    // MARK: - Internal Methods
     
     func update(_ rect: NSRect) {
         if !wasCreated {
             brightness += 0.03
         }
         else if shouldBeGone {
-                brightness -= 0.02
+            brightness -= 0.02
         }
         
         if brightness >= peakBrightness {
@@ -31,17 +40,19 @@ class InkSpot {
             isGone = true
         }
         
-        // L
-        NSColor.init(white: 0.0, alpha: brightness).set()
-        let leftInkSpotRect = self.frame
-        NSBezierPath.init(ovalIn: leftInkSpotRect).fill()
+        let spotColot = NSColor(white: 0.0, alpha: brightness)
+        spotColot.set()
         
-        // R
-        let rightInkSpotRect = NSRect.init(x: rect.width - self.frame.origin.x - self.frame.width,
-                                          y: self.frame.origin.y,
-                                          width: self.frame.width,
-                                          height: self.frame.height)
-        NSBezierPath.init(ovalIn: rightInkSpotRect).fill()
+        // Left Spot
+        let leftInkSpotRect = frame
+        NSBezierPath(ovalIn: leftInkSpotRect).fill()
+        
+        // Right Spot
+        let rightInkSpotRect = NSRect(x: rect.width - leftInkSpotRect.origin.x - leftInkSpotRect.width,
+                                      y: leftInkSpotRect.origin.y,
+                                      width: leftInkSpotRect.width,
+                                      height: leftInkSpotRect.height)
+        NSBezierPath(ovalIn: rightInkSpotRect).fill()
     }
     
 }

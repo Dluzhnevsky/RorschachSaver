@@ -2,16 +2,21 @@ import Cocoa
 
 class InkGenerator {
     
-    static let idlingTime = 50
-    static let showingTime = 150
+    // MARK: - Private Static Properties
     
-    static let defaultInkAmount = 250
+    private static let idlingTime = 50
+    private static let showingTime = 150
+    private static let defaultInkAmount = 250
     
-     enum State {
+    // MARK: - Private Types
+    
+    private enum State {
         case idling
         case painting
         case showing
     }
+    
+    // MARK: - Private Properties
     
     private var x: CGFloat = 0
     private var y: CGFloat = 0
@@ -19,10 +24,12 @@ class InkGenerator {
     private var brightness:CGFloat = 0
     private var rect: NSRect
     
-     var state: State
+    private var state: State
     private var timerTick: NSInteger
     
-    var inkSpots: [InkSpot]
+    private var inkSpots: [InkSpot]
+    
+    // MARK: - Lifecycle
     
     init(rect: NSRect) {
         self.rect = rect
@@ -33,14 +40,46 @@ class InkGenerator {
         inkSpots = [InkSpot]()
     }
     
-    func setup() {
-        self.radius = Randomizer.randomCGFloat * 50 + 20
-        self.x = Randomizer.randomCGFloat * rect.width / 2.0
-        self.y = Randomizer.randomCGFloat * rect.height
-        self.brightness = Randomizer.randomCGFloat / 2.0 + 0.5
+    // MARK: - Internal Methods
+    
+    func drawUpdatedFrame(in rect: NSRect) {
+        updateGenearatorState()
+        
+        NSColor.white.set()
+        rect.fill()
+        
+        for (index, inkSpot) in inkSpots.enumerated().reversed() {
+            inkSpot.update(rect)
+            
+            if inkSpot.isGone {
+                inkSpots.remove(at: index)
+            }
+        }
+        
+        ("TEST" as NSString).draw(in: rect, withAttributes: nil)
     }
     
-    func update() {
+    // MARK: - Private Methods
+    
+    private func startPainting() {
+        setup()
+        proceedAppendingInkSpots(with: InkGenerator.defaultInkAmount)
+    }
+    
+    private func setup() {
+        self.radius = randomCGFloat * 50 + 20
+        self.x = randomCGFloat * rect.width / 2.0
+        self.y = randomCGFloat * rect.height
+        self.brightness = randomCGFloat / 2.0 + 0.5
+    }
+    
+    private func eraseAll() {
+        for inkSpot in inkSpots {
+            inkSpot.shouldBeGone = true
+        }
+    }
+    
+    private func updateGenearatorState() {
         switch state {
         case .idling:
             self.timerTick += 1
@@ -49,13 +88,16 @@ class InkGenerator {
                 timerTick = 0
                 state = .painting
             }
+            
         case .painting:
-            for InkSpot in inkSpots {
-                if !InkSpot.wasCreated {
+            for inkSpot in inkSpots {
+                guard inkSpot.wasCreated else {
                     return
                 }
             }
+            
             state = .showing
+            
         case .showing:
             self.timerTick += 1
             if timerTick >= InkGenerator.showingTime {
@@ -66,21 +108,11 @@ class InkGenerator {
         }
     }
     
-    func startPainting() {
-        setup()
-        proceedAppendingInkSpots(with: InkGenerator.defaultInkAmount)
-    }
-    
-    func eraseAll() {
-        for inkSpot in inkSpots {
-            inkSpot.shouldBeGone = true
-        }
-    }
-    
-    func proceedAppendingInkSpots(with currentInkAmount: NSInteger) {
-        let inkSpot = InkSpot(x: x, y: y, width: radius, height: radius)
+    private func proceedAppendingInkSpots(with currentInkAmount: NSInteger) {
+        let spotPrakBrightness = randomCGFloat / 2.0 + 0.5
+        let inkSpot = InkSpot(x: x, y: y, width: radius, height: radius, peakBrightness: spotPrakBrightness)
         
-        radius += Randomizer.randomCGFloat * 64.0 - 32.0
+        radius += randomCGFloat * 64.0 - 32.0
         
         if radius < 32.0 {
             radius = 32.0
@@ -90,7 +122,7 @@ class InkGenerator {
             radius = 192.0
         }
         
-        x += Randomizer.randomInAbsoluteRange(min: 16.0, max: 32.0)
+        x += randomInAbsoluteRange(min: 16.0, max: 32.0)
         
         if x < 0 {
             x = 0
@@ -99,7 +131,7 @@ class InkGenerator {
             x = rect.width / 2.0
         }
         
-        y += Randomizer.randomInAbsoluteRange(min: 16.0, max: 32.0)
+        y += randomInAbsoluteRange(min: 16.0, max: 32.0)
         
         if y < 0 {
             y = 0
@@ -108,7 +140,7 @@ class InkGenerator {
             y = rect.height - radius
         }
         
-        brightness += Randomizer.randomCGFloat * 0.2 - 0.1
+        brightness += randomCGFloat * 0.2 - 0.1
         
         if brightness > 1.0 {
             brightness = 1.0
@@ -124,16 +156,23 @@ class InkGenerator {
         }
     }
     
-    func draw(_ rect: NSRect) {
+}
+
+extension InkGenerator {
+    
+    var randomCGFloat: CGFloat {
+        return CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+    }
+    
+    func randomInAbsoluteRange(min:CGFloat, max: CGFloat) -> CGFloat {
+        let randomInRange = randomCGFloat * (max - min) + min
         
-        for (index, inkSpot) in inkSpots.enumerated().reversed() {
-            inkSpot.update(rect)
-            
-            if inkSpot.isGone {
-                inkSpots.remove(at: index)
-            }
+        if randomCGFloat >= 0.5 {
+            return randomInRange
         }
-        
+        else {
+            return randomInRange * -1.0
+        }
     }
     
 }
