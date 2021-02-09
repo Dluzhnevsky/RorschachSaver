@@ -11,10 +11,11 @@
 		0A2E5A94203CACFC00941793 /* RorschachSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E5A93203CACFC00941793 /* RorschachSaverView.swift */; };
 		0A83A825215A23D700777158 /* InkSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A83A824215A23D700777158 /* InkSpot.swift */; };
 		A35A371F23EF7429004C5FFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35A371E23EF7429004C5FFE /* AppDelegate.swift */; };
-		A35A372623EF742C004C5FFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35A372423EF742B004C5FFE /* Main.storyboard */; };
 		A35A372C23EF74DA004C5FFE /* RorschachSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E5A93203CACFC00941793 /* RorschachSaverView.swift */; };
 		A35A372D23EF74DE004C5FFE /* InkGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0E0B032151B4440050625A /* InkGenerator.swift */; };
 		A35A372E23EF74E1004C5FFE /* InkSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A83A824215A23D700777158 /* InkSpot.swift */; };
+		A367AAC425D211C300FE4B78 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A367AAC325D211C300FE4B78 /* TestViewController.swift */; };
+		A367AACC25D21D1600FE4B78 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A367AACB25D21D1600FE4B78 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +26,10 @@
 		0A83A824215A23D700777158 /* InkSpot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InkSpot.swift; sourceTree = "<group>"; };
 		A35A371C23EF7429004C5FFE /* RroschachSaverApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RroschachSaverApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35A371E23EF7429004C5FFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A35A372523EF742C004C5FFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A35A372723EF742C004C5FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A35A372823EF742C004C5FFE /* RroschachSaverApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RroschachSaverApp.entitlements; sourceTree = "<group>"; };
+		A367AAC325D211C300FE4B78 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		A367AACB25D21D1600FE4B78 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +82,9 @@
 		A35A371D23EF7429004C5FFE /* RroschachSaverApp */ = {
 			isa = PBXGroup;
 			children = (
+				A367AACB25D21D1600FE4B78 /* main.swift */,
 				A35A371E23EF7429004C5FFE /* AppDelegate.swift */,
-				A35A372423EF742B004C5FFE /* Main.storyboard */,
+				A367AAC325D211C300FE4B78 /* TestViewController.swift */,
 				A35A372723EF742C004C5FFE /* Info.plist */,
 				A35A372823EF742C004C5FFE /* RroschachSaverApp.entitlements */,
 			);
@@ -143,7 +146,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Dluzhnevsky, Dmitry";
 				TargetAttributes = {
 					0A2E5A83203CAC8B00941793 = {
@@ -188,7 +191,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A35A372623EF742C004C5FFE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +211,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A367AAC425D211C300FE4B78 /* TestViewController.swift in Sources */,
 				A35A372C23EF74DA004C5FFE /* RorschachSaverView.swift in Sources */,
+				A367AACC25D21D1600FE4B78 /* main.swift in Sources */,
 				A35A372D23EF74DE004C5FFE /* InkGenerator.swift in Sources */,
 				A35A371F23EF7429004C5FFE /* AppDelegate.swift in Sources */,
 				A35A372E23EF74E1004C5FFE /* InkSpot.swift in Sources */,
@@ -217,17 +221,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A35A372423EF742B004C5FFE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A35A372523EF742C004C5FFE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0A2E5A8C203CAC8B00941793 /* Debug */ = {
@@ -244,6 +237,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -251,8 +245,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -299,6 +295,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -306,8 +303,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -330,6 +329,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -384,6 +384,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = RroschachSaverApp/RroschachSaverApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VWH8XY324W;
@@ -409,6 +410,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = RroschachSaverApp/RroschachSaverApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VWH8XY324W;
